@@ -1,0 +1,13 @@
+\select@language {brazilian}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\select@language {english}
+\addvspace {10\p@ }
+\select@language {brazilian}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.1:}{\ignorespaces Exemplo de figura importada de um arquivo e tamb\GenericError {(inputenc) }{Package inputenc Error: Unicode char \u 8:éme not set up for use with LaTeX}{See the inputenc package documentation for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}xemplo de caption muito grande que ocupa mais de uma linha na Lista de~Figuras}}{9}
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.2:}{\ignorespaces Exemplo de figura desenhada com o environment \texttt {picture}.}}{10}
+\addvspace {10\p@ }

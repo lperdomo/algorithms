@@ -1,0 +1,766 @@
+\documentclass{iiufrgs}
+\usepackage[latin1]{inputenc}   % pacote para acentuação
+\usepackage{cite}
+\usepackage{graphicx}           % pacote para importar figuras
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{times}              % pacote para usar fonte Adobe Times
+\usepackage{framed}             % para exemplos e TODOs
+\usepackage{xcolor}             % cores
+\usepackage{hyperref}           % referências
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{multirow}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+
+\definecolor{color1}{HTML}{E60046}
+%\definecolor{color21}{HTML}{d95e02} 
+%\definecolor{color31}{HTML}{7570b3}
+%\definecolor{color41}{HTML}{e69f00}
+%\definecolor{color42}{HTML}{009e73}
+\definecolor{color3}{HTML}{009E73}
+\definecolor{color4}{HTML}{D95E02}
+\definecolor{color5}{HTML}{56B4E9}
+
+\pgfplotstableread{
+	vertices edges minphases phases maxphases
+	40 202 2 2 2
+	60 453.6 1 1.55 2
+	80 791.75 1 1.55 2
+	100 1263.85 1 1.85 2
+	120 1839.05 1 1.95 3
+	140 2451.25 2 2 2
+	160 3200.95 1 1.45 2
+	180 4035.95 1 1.4 2
+	200 4969.95 1 1.9 3
+	220 6048.25 1 1.85 2
+	240 7215.45 1 1.7 3
+	260 8446.7 1 1.95 3
+	280 9828.7 1 2.15 3
+	300 11232.6 1 1.8 2
+	320 12775.9 1 1.9 3
+	340 14446.1 1 1.75 3
+	360 16185.1 1 1.85 3
+	380 18058 1 1.8 3
+	400 19995.9 1 1.95 3
+	420 22007.7 1 1.65 3
+	440 24200.9 1 1.55 2
+	460 26450.5 1 1.75 3
+	480 28812.2 1 1.65 2
+	500 31228.2 1 2.1 3
+	520 33829.1 1 1.55 2
+	540 36460.8 1 1.6 2
+	560 39186.4 1 1.65 3
+	580 42088.5 1 1.65 3
+	600 44988.2 1 1.8 3
+	620 48099.7 1 1.85 3
+	640 51106.2 1 1.6 3
+	660 54387.2 1 1.75 2
+	680 57829.4 1 1.55 2
+	700 61231.8 1 1.9 3
+	720 64739.3 1 1.75 2
+	740 68473.6 1 1.8 3
+	760 72170.9 1 1.75 3
+	780 76113.6 1 1.85 3
+	800 80011.4 1 1.75 3
+	820 84044.1 1 1.7 2
+	840 88292.4 1 1.6 3
+	860 92425.6 1 1.85 2
+	880 96745.8 1 1.7 2
+	900 101314 1 1.75 3
+}{\hopcroftkarpphases}
+
+\pgfplotstableread{
+	vertices edges minphases phases maxphases
+	35.45 37.1 2 2 2
+	59 94 4 4 4
+	79 159 2 2 2
+	99.4 249.4 4 4.6 6
+	119.8 370.4 4 4 4
+	139.9 509.3 3 3 3
+	160 627 4 4 4
+	180 799.2 3 4.65 6
+	200 991.7 3 3.4 4
+	220 1197.2 2 3.5 4
+	240 1438.85 3 3.85 6
+	260 1679.75 3 3.85 5
+	280 1960.85 4 4 4
+	300 2288.6 3 4.1 5
+	320 2573.8 2 4 5
+	340 2905.25 3 3.45 4
+	360 3242.2 3 4.7 5
+	380 3610 3 3.6 4
+	400 4008.2 3 3.5 4
+	420 4407.1 2 3.8 6
+	440 4835.2 2 3.55 4
+	460 5341 3 3.85 6
+	480 5761.5 3 3.95 5
+	500 6244.55 3 4.35 5
+	520 6776.95 3 4.15 5
+	540 7273.8 3 3.7 4
+	560 7804.75 3 4.05 6
+	580 8415.05 3 4.05 5
+	600 9011.4 3 4.05 5
+	620 9632.85 3 3.65 5
+	640 10189.1 2 3.95 6
+	660 10903.4 2 4.2 6
+	680 11548.4 2 3.35 4
+	700 12215.5 3 4.15 5
+	720 12928.5 3 4.05 5
+	740 13706.5 3 3.95 5
+	760 14447.9 2 4 6
+	780 15223.7 3 3.95 6
+	800 16017.1 3 4.05 5
+	820 16851.7 2 4.1 5
+	840 17605.5 2 3.95 6
+	860 18489.2 2 3.9 5
+	880 19342.5 3 4.05 6
+	900 20307.5 3 4 6	
+}{\hopcroftkarpphasessparse}
+
+\pgfplotstableread{
+	vertices edges minphases phases maxphases
+	40 360.4 1 1.9 2
+	60 811.3 1 1 1
+	80 1465.9 1 1 1
+	100 2254.65 1 1.35 2
+	120 3249.5 1 1 1
+	140 4409.4 1 1 1
+	160 5772.7 1 1 1
+	180 7295.05 1 1 1
+	200 9004.75 1 1.15 2
+	220 10901.5 1 1 1
+	240 12970.8 1 1 1
+	260 15214.1 1 1.15 2
+	280 17633.8 1 1 1
+	300 20241 1 1 1
+	320 23035.4 1 1.1 2
+	340 26005.7 1 1.15 2
+	360 29180 1 1.1 2
+	380 32493 1 1.05 2
+	400 35984.4 1 1.2 2
+	420 39686.4 1 1.05 2
+	440 43550.3 1 1.3 2
+	460 47595.2 1 1.15 2
+	480 51879.4 1 1.1 2
+	500 56246.4 1 1.1 2
+	520 60830.8 1 1.1 2
+	540 65587.6 1 1.1 2
+	560 70566.7 1 1.05 2
+	580 75693.4 1 1.15 2
+	600 81000.2 1 1.2 2
+	620 86473.9 1 1.1 2
+	640 92160.2 1 1.15 2
+	660 97987.6 1 1.1 2
+	680 104070 1 1.3 2
+	700 110238 1 1.2 2
+	720 116656 1 1.1 2
+	740 123190 1 1.1 2
+	760 129926 1 1.1 2
+	780 136878 1 1.05 2
+	800 144008 1 1.15 2
+	820 151347 1 1.15 2
+	840 158750 1 1.15 2
+	860 166434 1 1.05 2
+	880 174210 1 1.1 2
+	900 182259 1 1.2 2	
+}{\hopcroftkarpphasesdense}
+
+\pgfplotstableread{
+	vertices edges minmaximalextraction maximalextraction maxmaximalextraction
+	40 202 40 40 40
+	60 453.6 30 45.95 59
+	80 791.75 40 62 80
+	100 1263.85 50 90.55 98
+	120 1839.05 60 115.65 179
+	140 2451.25 136 137.85 140
+	160 3200.95 80 115.05 159
+	180 4035.95 90 125.6 180
+	200 4969.95 100 188.25 298
+	220 6048.25 110 201.65 220
+	240 7215.45 120 203.45 357
+	260 8446.7 130 251.25 390
+	280 9828.7 140 299.7 420
+	300 11232.6 150 268.85 300
+	320 12775.9 160 303.4 480
+	340 14446.1 170 296.8 507
+	360 16185.1 180 330.95 534
+	380 18058 190 340.8 567
+	400 19995.9 200 389 599
+	420 22007.7 210 345.8 629
+	440 24200.9 220 339.8 440
+	460 26450.5 230 401.5 688
+	480 28812.2 240 395 480
+	500 31228.2 250 522.95 749
+	520 33829.1 260 401.75 520
+	540 36460.8 270 430.8 540
+	560 39186.4 280 461.1 834
+	580 42088.5 290 476.8 868
+	600 44988.2 300 539.2 898
+	620 48099.7 310 572.45 930
+	640 51106.2 320 510.5 952
+	660 54387.2 330 576.7 660
+	680 57829.4 340 525.75 680
+	700 61231.8 350 663.6 1046
+	720 64739.3 360 628.8 720
+	740 68473.6 370 665.25 1105
+	760 72170.9 380 663.8 1137
+	780 76113.6 390 719.9 1167
+	800 80011.4 400 698.4 1200
+	820 84044.1 410 695.35 820
+	840 88292.4 420 671.05 1256
+	860 92425.6 430 794 860
+	880 96745.8 440 746.1 880
+	900 101314 450 785.65 1349
+}{\hopcroftkarpextract}
+
+\pgfplotstableread{
+	vertices edges minmaximalextraction maximalextraction maxmaximalextraction
+	35.45 37.1 29 29.3 31
+	59 94 102 102 102
+	79 159 73 73 73
+	99.4 249.4 174 192 234
+	119.8 370.4 213 215.8 227
+	139.9 509.3 195 199.5 200
+	160 627 288 301.6 305
+	180 799.2 258 361.95 447
+	200 991.7 280 320.85 384
+	220 1197.2 212 363.55 409
+	240 1438.85 344 444 688
+	260 1679.75 364 484.85 643
+	280 1960.85 513 532.6 545
+	300 2288.6 436 588 703
+	320 2573.8 316 589.55 768
+	340 2905.25 489 566.2 659
+	360 3242.2 527 812.4 883
+	380 3610 524 657 745
+	400 4008.2 569 680.8 787
+	420 4407.1 410 760.25 1212
+	440 4835.2 431 765.35 873
+	460 5341 607 853.8 1354
+	480 5761.5 695 921.8 1170
+	500 6244.55 711 1058.9 1233
+	520 6776.95 747 1050.7 1277
+	540 7273.8 790 971.4 1055
+	560 7804.75 790 1099.75 1654
+	580 8415.05 829 1150.55 1425
+	600 9011.4 878 1188.75 1469
+	620 9632.85 896 1104 1520
+	640 10189.1 636 1233.05 1827
+	660 10903.4 651 1360.9 1952
+	680 11548.4 674 1119.6 1353
+	700 12215.5 1029 1427.4 1736
+	720 12928.5 1043 1423.1 1779
+	740 13706.5 1093 1431.35 1827
+	760 14447.9 754 1488.1 2239
+	780 15223.7 1138 1505.5 2230
+	800 16017.1 1173 1588.55 1981
+	820 16851.7 810 1648.15 2022
+	840 17605.5 828 1631.25 2486
+	860 18489.2 837 1650.8 2140
+	880 19342.5 1254 1753.3 2606
+	900 20307.5 1313 1770.25 2628	
+}{\hopcroftkarpextractsparse}
+
+\pgfplotstableread{
+	vertices edges minmaximalextraction maximalextraction maxmaximalextraction
+	40 360.4 20 38 40
+	60 811.3 30 30 30
+	80 1465.9 40 40 40
+	100 2254.65 50 67.5 100
+	120 3249.5 60 60 60
+	140 4409.4 70 70 70
+	160 5772.7 80 80 80
+	180 7295.05 90 90 90
+	200 9004.75 100 115 200
+	220 10901.5 110 110 110
+	240 12970.8 120 120 120
+	260 15214.1 130 149.45 260
+	280 17633.8 140 140 140
+	300 20241 150 150 150
+	320 23035.4 160 175.95 320
+	340 26005.7 170 195.45 340
+	360 29180 180 198 360
+	380 32493 190 199.5 380
+	400 35984.4 200 239.9 400
+	420 39686.4 210 220.5 420
+	440 43550.3 220 285.95 440
+	460 47595.2 230 264.5 460
+	480 51879.4 240 264 480
+	500 56246.4 250 275 500
+	520 60830.8 260 285.95 520
+	540 65587.6 270 297 540
+	560 70566.7 280 294 560
+	580 75693.4 290 333.5 580
+	600 81000.2 300 359.95 600
+	620 86473.9 310 341 620
+	640 92160.2 320 367.95 640
+	660 97987.6 330 362.95 660
+	680 104070 340 442 680
+	700 110238 350 420 700
+	720 116656 360 395.95 720
+	740 123190 370 406.95 740
+	760 129926 380 418 760
+	780 136878 390 409.5 780
+	800 144008 400 459.95 800
+	820 151347 410 471.35 820
+	840 158750 420 482.95 840
+	860 166434 430 451.5 860
+	880 174210 440 484 880
+	900 182259 450 539.9 900	
+}{\hopcroftkarpextractdense}
+
+\pgfplotstableread{
+	vertices edges phases maximalextraction mintime elapsedtime maxtime
+	40 202 2 40 0 0.47382691400000000000 0
+	60 453.6 1.55 45.95 0 1.097588429 1
+	80 791.75 1.55 62 1 1.60000000000000008882 3
+	100 1263.85 1.85 90.55 1 2.70000000000000017764 3
+	120 1839.05 1.95 115.65 2 4.45000000000000017764 10
+	140 2451.25 2 137.85 5 5.95000000000000017764 6
+	160 3200.95 1.45 115.05 3 5.20000000000000017764 10
+	180 4035.95 1.4 125.6 4 6.84999999999999964473 10
+	200 4969.95 1.9 188.25 6 11.44999999999999928946 18
+	220 6048.25 1.85 201.65 7 13.59999999999999964473 15
+	240 7215.45 1.7 203.45 8 15.05000000000000071054 27
+	260 8446.7 1.95 251.25 10 20.50000000000000000000 32
+	280 9828.7 2.15 299.7 12 26.85000000000000142109 39
+	300 11232.6 1.8 268.85 14 25.35000000000000142109 29
+	320 12775.9 1.9 303.4 15 30.35000000000000142109 48
+	340 14446.1 1.75 296.8 18 31.75000000000000000000 54
+	360 16185.1 1.85 330.95 20 38.89999999999999857891 63
+	380 18058 1.8 340.8 22 42.75000000000000000000 69
+	400 19995.9 1.95 389 25 51.29999999999999715783 80
+	420 22007.7 1.65 345.8 28 48.10000000000000142109 87
+	440 24200.9 1.55 339.8 30 48.95000000000000284217 65
+	460 26450.5 1.75 401.5 33 61.60000000000000142109 104
+	480 28812.2 1.65 395 39 63.20000000000000284217 79
+	500 31228.2 2.1 522.95 40 86.40000000000000568434 124
+	520 33829.1 1.55 401.75 43 68.54999999999999715783 90
+	540 36460.8 1.6 430.8 47 76.59999999999999431566 97
+	560 39186.4 1.65 461.1 50 84.95000000000000284217 154
+	580 42088.5 1.65 476.8 54 90.84999999999999431566 167
+	600 44988.2 1.8 539.2 58 106.70000000000000284217 178
+	620 48099.7 1.85 572.45 62 116.75000000000000000000 190
+	640 51106.2 1.6 510.5 66 106.45000000000000284217 200
+	660 54387.2 1.75 576.7 70 124.90000000000000568434 146
+	680 57829.4 1.55 525.75 75 117.25000000000000000000 153
+	700 61231.8 1.9 663.6 80 152.50000000000000000000 244
+	720 64739.3 1.75 628.8 84 149.44999999999998863132 173
+	740 68473.6 1.8 665.25 90 162.80000000000001136868 270
+	760 72170.9 1.75 663.8 95 167.44999999999998863132 286
+	780 76113.6 1.85 719.9 100 187.65000000000000568434 309
+	800 80011.4 1.75 698.4 106 186.84999999999999431566 321
+	820 84044.1 1.7 695.35 112 191.15000000000000568434 226
+	840 88292.4 1.6 671.05 118 189.59999999999999431566 355
+	860 92425.6 1.85 794 123 229.75000000000000000000 251
+	880 96745.8 1.7 746.1 128 221.40000000000000568434 263
+	900 101314 1.75 785.65 135 237.65000000000000568434 409 
+}{\hopcroftkarptime}
+
+\pgfplotstableread{
+	vertices edges mintime elapsedtime maxtime
+	40 202 30 34.79999999999999715783 49
+	60 453.6 84 91.04999999999999715783 100
+	80 791.75 181 186.30000000000001136868 209
+	100 1263.85 340 348.30000000000001136868 356
+	120 1839.05 539 554.79999999999995452526 573
+	140 2451.25 851 859.60000000000002273737 869
+	160 3200.95 1221 1241.29999999999995452526 1265
+	180 4035.95 1710 1729.65000000000009094947 1825
+	200 4969.95 2249 2276.44999999999981810106 2314
+	220 6048.25 2960 2984.00000000000000000000 3021
+	240 7215.45 3793 3868.50000000000000000000 4167
+	260 8446.7 4814 4877.85000000000036379788 4954
+	280 9828.7 5997 6078.39999999999963620212 6168
+	300 11232.6 7293 7386.44999999999981810106 7861
+	320 12775.9 8745 8835.89999999999963620212 8945
+	340 14446.1 10339 10454.60000000000036379788 10569
+	360 16185.1 12216 12329.60000000000036379788 12442
+	380 18058 14232 14402.45000000000072759576 14689
+	400 19995.9 16475 16694.95000000000072759576 17687
+	420 22007.7 18861 19220.59999999999854480848 21371
+	440 24200.9 21543 21966.75000000000000000000 25702
+	460 26450.5 24573 24764.00000000000000000000 25008
+	480 28812.2 27731 28141.04999999999927240424 28656
+	500 31228.2 31755 32034.04999999999927240424 32701
+	520 33829.1 35905 36238.50000000000000000000 36642
+	540 36460.8 40318 40972.09999999999854480848 41933
+	560 39186.4 45156 45424.65000000000145519152 46280
+	580 42088.5 49782 50242.05000000000291038305 51099
+	600 44988.2 55006 55403.50000000000000000000 55837
+	620 48099.7 60408 61134.75000000000000000000 62538
+	640 51106.2 66054 66571.85000000000582076609 66953
+	660 54387.2 72165 72581.39999999999417923391 73286
+	680 57829.4 78437 79027.14999999999417923391 79712
+	700 61231.8 85378 86114.19999999999708961695 91155
+	720 64739.3 92753 93144.69999999999708961695 93476
+	740 68473.6 100183 100836.89999999999417923391 103996
+	760 72170.9 108069 108653.25000000000000000000 109272
+	780 76113.6 116778 117227.85000000000582076609 117866
+	800 80011.4 125137 126201.94999999999708961695 127486
+	820 84044.1 134557 135776.79999999998835846782 138977
+	840 88292.4 144552 146137.14999999999417923391 162532
+	860 92425.6 154845 155362.20000000001164153218 156506
+	880 96745.8 164928 166444.25000000000000000000 178449
+	900 101314 176368 177422.29999999998835846782 179902
+}{\fordfulkersontime}
+
+\pgfplotstableread{
+	vertices edges phases maximalextraction mintime elapsedtime maxtime
+	35.45 37.1 2 29.3 0 0.334703288 0
+	59 94 4 102 1 0.55000000000000004441 1
+	79 159 2 73 0 1.434442662 1
+	99.4 249.4 4.6 192 2 2.25000000000000000000 3
+	119.8 370.4 4 215.8 2 2.85000000000000008882 4
+	139.9 509.3 3 199.5 2 2.60000000000000008882 5
+	160 627 4 301.6 4 4.45000000000000017764 6
+	180 799.2 4.65 361.95 4 6.40000000000000035527 9
+	200 991.7 3.4 320.85 5 6.29999999999999982236 15
+	220 1197.2 3.5 363.55 4 7.20000000000000017764 9
+	240 1438.85 3.85 444 7 9.40000000000000035527 16
+	260 1679.75 3.85 484.85 8 11.65000000000000035527 17
+	280 1960.85 4 532.6 12 12.69999999999999928946 13
+	300 2288.6 4.1 588 11 16.10000000000000142109 22
+	320 2573.8 4 589.55 8 16.64999999999999857891 22
+	340 2905.25 3.45 566.2 13 15.75000000000000000000 18
+	360 3242.2 4.7 812.4 15 28.64999999999999857891 36
+	380 3610 3.6 657 16 20.89999999999999857891 25
+	400 4008.2 3.5 680.8 18 21.80000000000000071054 26
+	420 4407.1 3.8 760.25 13 25.69999999999999928946 42
+	440 4835.2 3.55 765.35 14 26.50000000000000000000 31
+	460 5341 3.85 853.8 23 31.94999999999999928946 50
+	480 5761.5 3.95 921.8 26 34.79999999999999715783 45
+	500 6244.55 4.35 1058.9 28 41.89999999999999857891 50
+	520 6776.95 4.15 1050.7 30 43.10000000000000142109 53
+	540 7273.8 3.7 971.4 33 41.10000000000000142109 46
+	560 7804.75 4.05 1099.75 34 48.25000000000000000000 72
+	580 8415.05 4.05 1150.55 37 52.14999999999999857891 65
+	600 9011.4 4.05 1188.75 40 56.29999999999999715783 73
+	620 9632.85 3.65 1104 43 53.25000000000000000000 73
+	640 10189.1 3.95 1233.05 31 60.60000000000000142109 91
+	660 10903.4 4.2 1360.9 32 70.25000000000000000000 103
+	680 11548.4 3.35 1119.6 35 58.89999999999999857891 74
+	700 12215.5 4.15 1427.4 54 76.95000000000000284217 96
+	720 12928.5 4.05 1423.1 58 81.29999999999999715783 102
+	740 13706.5 3.95 1431.35 62 84.04999999999999715783 109
+	760 14447.9 4 1488.1 43 87.90000000000000568434 133
+	780 15223.7 3.95 1505.5 70 93.20000000000000284217 138
+	800 16017.1 4.05 1588.55 71 99.70000000000000284217 127
+	820 16851.7 4.1 1648.15 51 107.65000000000000568434 141
+	840 17605.5 3.95 1631.25 56 107.45000000000000284217 164
+	860 18489.2 3.9 1650.8 54 110.70000000000000284217 146
+	880 19342.5 4.05 1753.3 87 120.95000000000000284217 180
+	900 20307.5 4 1770.25 90 123.70000000000000284217 183	
+}{\hopcroftkarptimesparse}
+
+\pgfplotstableread{
+	vertices edges phases maximalextraction mintime elapsedtime maxtime
+	40 360.4 1.9 38 0 0.487534651 1
+	60 811.3 1 30 0 1.097494068 1
+	80 1465.9 1 40 1 1.983010667 2
+	100 2254.65 1.35 67.5 2 3.04999999999999982236 5
+	120 3249.5 1 60 3 3.10000000000000008882 4
+	140 4409.4 1 70 5 5.00000000000000000000 5
+	160 5772.7 1 80 6 6.15000000000000035527 7
+	180 7295.05 1 90 8 8.05000000000000071054 9
+	200 9004.75 1.15 115 10 11.69999999999999928946 21
+	220 10901.5 1 110 12 12.34999999999999964473 15
+	240 12970.8 1 120 15 15.00000000000000000000 15
+	260 15214.1 1.15 149.45 18 20.75000000000000000000 37
+	280 17633.8 1 140 21 21.05000000000000071054 22
+	300 20241 1 150 24 25.14999999999999857891 32
+	320 23035.4 1.1 175.95 27 31.75000000000000000000 58
+	340 26005.7 1.15 195.45 31 36.70000000000000284217 63
+	360 29180 1.1 198 35 39.00000000000000000000 71
+	380 32493 1.05 199.5 39 41.89999999999999857891 80
+	400 35984.4 1.2 239.9 44 52.89999999999999857891 89
+	420 39686.4 1.05 220.5 48 51.45000000000000284217 98
+	440 43550.3 1.3 285.95 54 70.54999999999999715783 109
+	460 47595.2 1.15 264.5 58 68.25000000000000000000 120
+	480 51879.4 1.1 264 64 70.84999999999999431566 130
+	500 56246.4 1.1 275 70 77.20000000000000284217 141
+	520 60830.8 1.1 285.95 76 84.15000000000000568434 154
+	540 65587.6 1.1 297 82 91.25000000000000000000 166
+	560 70566.7 1.05 294 89 95.00000000000000000000 182
+	580 75693.4 1.15 333.5 96 111.79999999999999715783 196
+	600 81000.2 1.2 359.95 103 125.29999999999999715783 211
+	620 86473.9 1.1 341 110 122.50000000000000000000 226
+	640 92160.2 1.15 367.95 117 135.65000000000000568434 238
+	660 97987.6 1.1 362.95 125 138.75000000000000000000 260
+	680 104070 1.3 442 134 174.75000000000000000000 271
+	700 110238 1.2 420 140 170.34999999999999431566 288
+	720 116656 1.1 395.95 149 164.80000000000001136868 301
+	740 123190 1.1 406.95 158 174.40000000000000568434 318
+	760 129926 1.1 418 167 184.65000000000000568434 337
+	780 136878 1.05 409.5 177 186.84999999999999431566 357
+	800 144008 1.15 459.95 187 216.09999999999999431566 381
+	820 151347 1.15 471.35 197 227.75000000000000000000 400
+	840 158750 1.15 482.95 207 239.65000000000000568434 422
+	860 166434 1.05 451.5 218 230.00000000000000000000 438
+	880 174210 1.1 484 229 253.34999999999999431566 464
+	900 182259 1.2 539.9 239 288.75000000000000000000 483	
+}{\hopcroftkarptimedense}
+
+
+
+\title{Emparelhamento \linebreak Algoritmo de Hopcroft-Karp}
+\author{}{Leonardo Perdomo}
+
+\begin{document}
+	\maketitle
+	
+	\setcounter{chapter}{1}
+	
+	\section{Tarefa}
+	O objetivo deste trabalho foi a implementação prática em laboratório e a análise experimental da complexidade do algoritmo de Hopcroft-Karp \cite{hopcroftkarp1973matching} para solução do problema de emparelhamento máximo em grafos bi-partidos. Em seguida, foi realizada a redução para um problema de fluxo, usando o algoritmo Ford-Fulkerson \cite{fordfulkerson1956flow} com estratégia \textit{Fattest Path} implementado no último trabalho, a fim de observar experimentalmente qual abordagem apresenta maior eficiência. 
+	
+	\section{Solução}
+	Para implementar a solução do problema proposto, foram utilizadas estruturas do tipo \textit{map} para registro dos emparelhamentos entre vértices. O algoritmo obtém sucessivamente o caminho mais curto aumentante entre dois vértices não emparelhados por meio da busca em largura, navegando entre as duas partes do grafo alternando entre arestas emparelhadas e marcando com incrementos de 1 (garantindo também sua desconsideração nos próximos caminhos). Em seguida, por meio de busca em profundidade de vértices não emparelhados, o caminho incrementado é seguido verificando se é o mais curto para emparelhamento. A complexidade esperada para o algoritmo é de $O(\sqrt{n}(n+m))$.
+	
+	Para redução a problema de fluxo máximo, a implementação \textit{Fattest Path} do algoritmo Ford-Fulkerson realizada no último trabalho foi adaptada, adicionando um vértice $s$ conectado à uma parte do grafo bi-partido, um vértice $t$ à outra parte, e atribuindo pesos 1 nas arestas. O fluxo máximo resultante corresponde à cardinalidade máxima buscada no problema de emparelhamento.
+		
+	\section{Ambiente de teste}
+	O dispositivo utilizado para realização dos testes foi o \textit{notebook} pessoal do autor deste trabalho, um ASUS X451CAP com Intel i3 3217U de 1.8GHz, 4GB de RAM DDR3 de 798MHz com Ubuntu 16.04 64bit LTS.
+	
+	
+	\section{Resultados}
+	Os experimentos realizados consistiram na utilização de grafos bi-partidos randômicos criados com o gerador disponibilizado pelo professor em aula. Foram utilizados grafos com aumento progressivo do número de vértices de 20 à 900, e distribuições de probabilidade $p = 0.1$, $p = 0.5$ e $p = 0.9$ na criação de arestas, atingindo $\approx$ 10000 arestas em instâncias de 900 vértices. Para cada configuração, foram gerados os grafos e resolvidos 20 vezes em repetição pelo algoritmo implementado. Os números de fases e de extrações de caminhos aumentantes por execução do algoritmo Hopcroft-Karp foi coletado para verificação do cumprimento dos respectivos limites esperados $\sqrt{n}$ e $n+m$. 
+	
+	Por meio da relação entre fases observadas e limite esperado apresentada na figura \ref{fig:phases}, é possível observar por meio da curva em convergência que o limite téorico foi respeitado. O número de fases durante os experimentos manteve-se baixo, registrando no máximo 6 fases em algumas instâncias de grafos com $p = 0.1$ arestas, não passando de 2 fases para grafos com $p = 0.9$. O respeito ao limite téorico também é notado para as extrações de caminhos aumentantes, apresentadas na figura \ref{fig:extractions}, em maior número para instâncias com menor quantidade de arestas.	
+	
+	\begin{figure}[h!]
+		\centering
+		\subfigure[Grafos com distrib. $p = 0.5$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $F_o/F$,
+			legend style={at={(0.40, 0.99)},font=\tiny},
+			]			
+			\addplot+[very thick, only marks, color=color5, mark options={draw=color5!90!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{phases}/sqrt(\thisrow{vertices}))] {\hopcroftkarpphases};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos com distrib. $p = 0.1$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $F_o/F$,
+			legend style={at={(0.40, 0.99)},font=\tiny},
+			]			
+			\addplot+[very thick, only marks, color=color4, mark options={draw=color4!80!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{phases}/sqrt(\thisrow{vertices}))] {\hopcroftkarpphasessparse};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos com distrib. $p = 0.9$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $F_o/F$,
+			legend style={at={(0.40, 0.99)},font=\tiny},
+			]			
+			\addplot+[very thick, only marks, color=color3, mark options={draw=color3!90!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{phases}/sqrt(\thisrow{vertices}))] {\hopcroftkarpphasesdense};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\caption{Relação entre número fases observadas ($F_o$) e esperadas ($F = \sqrt{n}$).}
+		\label{fig:phases}
+	\end{figure}		
+
+	\begin{figure}[h!]
+		\centering
+		\subfigure[Grafos com distrib. $p = 0.5$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $C_o/C$,
+			legend style={at={(0.40, 0.99)},font=\tiny},
+			]			
+			\addplot+[very thick, only marks, color=color5, mark options={draw=color5!90!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{maximalextraction}/(\thisrow{vertices}+\thisrow{edges}))] {\hopcroftkarpextract};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos com distrib. $p = 0.1$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $C_o/C$,
+			legend style={at={(0.40, 0.99)},font=\tiny},
+			]			
+			\addplot+[very thick, only marks, color=color4, mark options={draw=color4!80!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{maximalextraction}/(\thisrow{vertices}+\thisrow{edges}))] {\hopcroftkarpextractsparse};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos com distrib. $p = 0.9$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $C_o/C$,
+			legend style={at={(0.40, 0.99)},font=\tiny},
+			]			
+			\addplot+[very thick, only marks, color=color3, mark options={draw=color3!90!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{maximalextraction}/(\thisrow{vertices}+\thisrow{edges}))] {\hopcroftkarpextractdense};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\caption{Relação entre número de extrações de conj. maximal de caminhos aumentantes observados ($C_o$) e esperados ($C = {n+m}$).}
+		\label{fig:extractions}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\subfigure[Grafos com distribuição $p = 0.5$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $T_o/T$
+			]			
+			\addplot+[very thick, only marks, color=color5, mark options={draw=color5!90!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{elapsedtime}/(sqrt(\thisrow{vertices})*(\thisrow{vertices}+\thisrow{edges})))] {\hopcroftkarptime};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos com distribuição $p = 0.1$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $T_o/T$
+			]			
+			\addplot+[very thick, only marks, color=color4, mark options={draw=color4!80!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{elapsedtime}/(sqrt(\thisrow{vertices})*(\thisrow{vertices}+\thisrow{edges})))] {\hopcroftkarptimesparse};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos com distribuição $p = 0.9$ de arestas.] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			height=4.9cm,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=Relação $T_o/T$
+			]			
+			\addplot+[very thick, only marks, color=color3, mark options={draw=color3!90!black}] 
+			plot[very thick]
+			table[x=vertices, y 
+			expr=(\thisrow{elapsedtime}/(sqrt(\thisrow{vertices})*(\thisrow{vertices}+\thisrow{edges})))] {\hopcroftkarptimedense};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\caption{Relação entre tempo observado ($T_o$) e esperado ($T = {(\sqrt{n})(n+m)}$).}
+		\label{fig:time}
+	\end{figure}
+	
+	Para a análise da relação entre tempo observado $T_o$ e teórico $T$, também foram coletados os tempos de execução do algoritmo implementado durante os experimentos. O tempo médio de execução para cada tipo de grafo foi dividido pela complexidade esperada $O(\sqrt{n}(n+m))$, podendo ser observado na figura \ref{fig:time}, demonstrando respeito ao limite teórico. \newline\newline 
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			width=\linewidth/2.25,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Vértices ($n$),
+			ylabel=$log(T_o)$,
+			legend style={at={(0.95, 0.25)},font=\tiny},	
+			]	
+			\addplot+[very thick, color=color5, mark=none] 
+			plot[very thick]
+			table[x=vertices, y expr=(ln(\thisrow{elapsedtime}))] {\hopcroftkarptime};
+			\addplot+[very thick, color=color1, mark=none] 
+			plot[very thick]
+			table[x=vertices, y expr=(ln(\thisrow{elapsedtime}))] {\fordfulkersontime};
+			\legend{Hopcroft-Karp, Ford-Fulkerson (FP)}					
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Comparação em escala logarítmica entre tempos observados ($T_o$) em $ms$ para obtenção da cardinalidade máxima pelos algoritmos Hopcroft-Karp e Ford-Fulkerson com Fattest Path (FP) para grafos com distribuição $p = 0.5$ de arestas.}
+		\label{fig:compare}
+	\end{figure}		
+	
+	Com a redução do emparelhamento máximo para um problema de fluxo máximo, os tempos de execução dos dois algoritmos para grafos com $p = 0.5$ arestas são apresentados em escala logarítmica na figura \ref{fig:compare}. O custo em tempo foi significativamente maior para a variante \textit{Fattest Path} do algoritmo Ford-Fulkerson em relação à implementação, mais eficiente, de Hopcroft-Karp, justificando a escolha da escala para melhor leitura da diferença entre ambos.	
+	
+	\section{Conclusão}
+	Através da implementação prática e experimentação conduzidas neste trabalho, foi possível observar que o algoritmo Hopcroft-Karp para emparelhamento respeita a complexidade teórica de $O(\sqrt{n}(n+m))$, e os limites de fases $\sqrt{n}$ e de extrações de caminhos aumentantes $n+m$. Notadamente, para as três configurações randômicas de grafos com até 900 vértices e $\approx$ 10000 arestas o número de fases esteve significativamente abaixo do limite máximo previsto.
+	
+	Por fim, a redução a um problema de fluxo máximo com a variante \textit{Fattest Path} do algoritmo Ford-Fulkerson implementada no último trabalho permitiu a comparação de eficiência por tempo de execução com a implementação de Hopcroft-Karp, sendo concluído que a solução com Ford-Fulkerson é significativamente mais custosa.
+	
+	
+	\bibliographystyle{IEEEtran}
+	\bibliography{r}
+	
+\end{document}
