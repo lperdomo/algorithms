@@ -1,0 +1,96 @@
+\documentclass{iiufrgs}
+\usepackage[latin1]{inputenc}   % pacote para acentuação
+\usepackage{cite}
+\usepackage{graphicx}           % pacote para importar figuras
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{times}              % pacote para usar fonte Adobe Times
+\usepackage{framed}             % para exemplos e TODOs
+\usepackage{xcolor}             % cores
+\usepackage{hyperref}           % referências
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{multirow}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+
+\definecolor{color1}{HTML}{E60046}
+%\definecolor{color21}{HTML}{d95e02} 
+%\definecolor{color31}{HTML}{7570b3}
+%\definecolor{color41}{HTML}{e69f00}
+%\definecolor{color42}{HTML}{009e73}
+\definecolor{color3}{HTML}{009E73}
+\definecolor{color4}{HTML}{D95E02}
+\definecolor{color5}{HTML}{56B4E9}
+
+\title{Algoritmo de Cristofides}
+\author{}{Leonardo Perdomo}
+
+\begin{document}
+	\maketitle
+	
+	\setcounter{chapter}{1}
+	
+	\section{Tarefa}
+	O objetivo deste trabalho foi a implementação prática em laboratório e a avaliação da qualidade do algoritmo de Cristófides, que obtém até $3/2opt$ no pior caso de aproximação para o problema do caixeiro viajante (TSP) \cite{christofides1976tsp}, devendo utilizar variantes usando emparelhamento perfeito máximo, por meio da biblioteca Blossom V, e de emparelhamento perfeito por um algoritmo guloso (\textit{greedy}).
+
+	\section{Solução}
+	Para a solução do problema proposto foi implementado o algoritmo de Prim, para extração da árvore geradora mínima (MST), utilizada a biblioteca Blossom V e implementada uma alternativa gulosa para o emparelhamento perfeito máximo do grafo completo de vértices ímpares da MST, obtendo um grafo euleriano pela união das arestas emparelhadas à MST, implementado o algoritmo de Hierholzer para obtenção do circuito euleriano, e por fim, implementada a extração do circuito hamiltoniano pulando vértices repetidos do circuito euleriano (prática possível para grafos métricos).
+	Para garantir a viabilidade na realização dos experimentos com as instâncias de grafos métricos fornecidas, foi realizada a implementação do trabalho tratando as arestas de forma implícita, com os vértices definidos por coordenadas permitindo o cálculo de distância euclidiana entre os mesmos.
+	Foi identificado em laboratório que a biblioteca Blossom V possui algum \textit{bug} em sua implementação geométrica que não permite a obtenção de resultados para algumas instâncias ("usa13509", "brd14051" e "d18512") pois sua execução não termina. Para contornar o problema e obter os resultados foi necessário uso com representação explícita das arestas por meio da opção \textit{SolveComplete}, consequentemente aumentando de forma significativa o tempo de execução e consumo de memória do algoritmo para estas três instâncias.
+		
+	\section{Ambiente de teste}
+	O dispositivo utilizado para realização dos testes foi o \textit{notebook} pessoal do autor deste trabalho, um ASUS X451CAP com Intel i3 3217U de 1.8GHz, 4GB de RAM DDR3 de 798MHz com Ubuntu 16.04 64bit LTS.
+	
+	\section{Resultados}
+	Os experimentos realizados consistiram no uso dos grafos métricos fornecidos, listados na tabela \ref{tabresultados}, como entrada para o algoritmo implementado nas configurações utilizando a biblioteca Blossom V ou uma abordagem \textit{greedy} desenvolvida, para a etapa de emparelhamento perfeito dos vértices ímpares da MST. O primeiro vértice da entrada de cada grafo foi selecionado para construção da árvore geradora mínima usando Prim. Os resultados do TSP obtidos com o algoritmo foram tomados, sendo calculado seu desvio percentual em relação às melhores soluções conhecidas para cada grafo. O tempo de execução foi medido em 20 repetições para cada configuração desenvolvida.
+	
+	Os resultados coletados foram analisados e são apresentados na tabela \ref{tabresultados} para cada grafo e configuração de emparelhamento testados. O resultado do algoritmo consiste na distância física percorrida pelo circuito hamiltoniano nos grafos métricos, e seu desvio relativo percentual aos melhores valores conhecidos.
+	
+	Foi observado que o algoritmo respeitou a aproximação de até $3/2opt$ no pior caso, tendo atingido desvio relativo ao valor ótimo mais alto no grafo vm1748 com emparelhamento perfeito guloso (0,28286823), e mais baixo para o grafo rl5915 usando a Blossom V (0,09964458).
+	Foram atingidas soluções mais próximas ao melhor valor conhecido utilizando Blossom V em relação à \textit{greedy}, sem aumento significativo em tempo médio de execução do algoritmo, excetuando nas três maiores instâncias onde um \textit{bug} da biblioteca, comentado em aula, exigiu o uso de solução que carrega todas as arestas em memória e, consequentemente, aumenta significativamente o tempo de execução do algoritmo.	
+	
+	\begin{table}[]
+	\begin{threeparttable}
+		\centering
+		\caption{Resultados do algoritmo de Cristofides}
+		\label{tabresultados}
+		\begin{tabular}{@{}llcrrr@{}}
+			\toprule
+			\begin{tabular}[c]{@{}c@{}}Instância\\\begin{small}(melhor)\end{small}\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textit{Perfect}\\ \textit{Matching}\end{tabular} & Resultado & \begin{tabular}[c]{@{}c@{}}Desvio \\ Relativo \%\end{tabular} & \begin{tabular}[c]{@{}c@{}}Tempo \\ Médio ($ms$)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Desvio\\ Padrão ($ms$)\end{tabular} \\ \midrule
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}berlin52\\ \begin{small}(7542)\end{small}\end{tabular}} & \begin{small}Blossom V\end{small} & \begin{small}8595\end{small} & \begin{small}0,13961814\end{small} & \begin{small}4,1\end{small} & \begin{small}0,71818485\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}9514\end{small} & \begin{small}0,26146911\end{small} & \begin{small}2,45\end{small} & \begin{small}1,39453822\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}vm1748\\ \begin{small}(336556)\end{small}\end{tabular}} & \begin{small}Blossom V\end{small} & \begin{small}381341\end{small} & \begin{small}0,13306849\end{small} & \begin{small}837\end{small} & \begin{small}7,78662821\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}431757\end{small} & \begin{small}0,28286823\end{small} & \begin{small}818,25\end{small} & \begin{small}8,84292759\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}pr2392\\ \begin{small}(378032)\end{small}\end{tabular}} & \begin{small}Blossom V\end{small} & \begin{small}426845\end{small} & \begin{small}0,12912399\end{small} & \begin{small}1218,85\end{small} & \begin{small}3,36037279\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}452964\end{small} & \begin{small}0,19821602\end{small} & \begin{small}1183,75\end{small} & \begin{small}10,73545528\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}pcb3038\\ \begin{small}(137694)\end{small}\end{tabular}} & \begin{small}Blossom V\end{small} & \begin{small}155310\end{small} & \begin{small}0,12793586\end{small} & \begin{small}1734\end{small} & \begin{small}12,05251666\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}164143\end{small} & \begin{small}0,19208535\end{small} & \begin{small}1721,1\end{small} & \begin{small}10,76495288\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}fnl4461\\ \begin{small}(182566)\end{small}\end{tabular}} & \begin{small}Blossom V\end{small} & \begin{small}207888\end{small} & \begin{small}0,13870053\end{small} & \begin{small}3337,25\end{small} & \begin{small}14,33389431\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}215202\end{small} & \begin{small}0,17876275\end{small} & \begin{small}3181,65\end{small} & \begin{small}16,203557111\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}rl5934\\ \begin{small}(556045)\end{small}\end{tabular}} & \begin{small}Blossom V\end{small} & \begin{small}612923\end{small} & \begin{small}0,10229028\end{small} & \begin{small}6460,7\end{small} & \begin{small}18,15459924\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}677418\end{small} & \begin{small}0,21827910\end{small} & \begin{small}6433,8\end{small} & \begin{small}36,72171307\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}rl5915\\ \begin{small}(565530)\end{small}\end{tabular}} & \begin{small}Blossom V\end{small} & \begin{small}621882\end{small} & \begin{small}0,09964458\end{small} & \begin{small}5749,4\end{small} & \begin{small}22,53511879\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}680986\end{small} & \begin{small}0,20415539\end{small} & \begin{small}5746,05\end{small} & \begin{small}35,90407542\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}usa13509\\ \begin{small}(19982859)\end{small}\end{tabular}} & \begin{small}Blossom V*\end{small} & \begin{small}22562104\end{small} & \begin{small}0,12907287\end{small} & \begin{small}36088,1\end{small} & \begin{small}1159,36220670\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}24005622\end{small} & \begin{small}0,20131068\end{small} & \begin{small}27560,4\end{small} & \begin{small}95,33619184\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}brd14051\\ \begin{small}(469385)\end{small}\end{tabular}} & \begin{small}Blossom V*\end{small} & \begin{small}532967\end{small} & \begin{small}0,13545810\end{small} & \begin{small}41465,95\end{small} & \begin{small}1640,88636109\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}553589\end{small} & \begin{small}0,17939218\end{small} & \begin{small}25548,15\end{small} & \begin{small}96,18199580\end{small} \\ \cmidrule(l){1-6} 
+			\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}d18512\\ \begin{small}(645283)\end{small}\end{tabular}} & \begin{small}Blossom V*\end{small} & \begin{small}734937\end{small} & \begin{small}0,13893749\end{small} & \begin{small}77365,7\end{small} & \begin{small}1973,88119143\end{small} \\
+			& \begin{small}\textit{Greedy}\end{small} & \begin{small}759937\end{small} & \begin{small}0,17768018\end{small} & \begin{small}41350,6\end{small} & \begin{small}171,07443748\end{small} \\ \bottomrule
+		\end{tabular}
+		\begin{tablenotes}
+			\small
+			\item * Devido ao \textit{bug} no \textit{perfect matching} geométrico da Blossom V, este resultado foi obtido com a opção \textit{SolveComplete}, impactando no seu tempo médio de execução.
+		\end{tablenotes}
+	\end{threeparttable}	
+	\end{table}	
+	
+	\section{Conclusão}
+	Através da implementação prática e experimentação conduzidas neste trabalho, foi possível observar que o algoritmo de Cristofides implementado respeita a condição de até $3/2opt$ no pior caso de aproximação para o problema do caixeiro viajante (TSP). O impacto da abordagem de emparelhamento perfeito dos vértices ímpares da MST foi visível com resultados menos distantes do valor ótimo conhecido obtidos com a Blossom V em relação à alternativa gulosa, em tempos médios de execução semelhantes.
+	
+	\bibliographystyle{IEEEtran}
+	\bibliography{r}
+	
+\end{document}

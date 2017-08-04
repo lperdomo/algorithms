@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="christofides" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/christofides" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/christofides" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="blossom5/GEOM/GPMinit.cpp" />
+		<Unit filename="blossom5/GEOM/GPMinterface.cpp" />
+		<Unit filename="blossom5/GEOM/GPMkdtree.cpp" />
+		<Unit filename="blossom5/GEOM/GPMkdtree.h" />
+		<Unit filename="blossom5/GEOM/GPMmain.cpp" />
+		<Unit filename="blossom5/GEOM/GeomPerfectMatching.h" />
+		<Unit filename="blossom5/LCA.h" />
+		<Unit filename="blossom5/MinCost/MinCost.cpp" />
+		<Unit filename="blossom5/MinCost/MinCost.h" />
+		<Unit filename="blossom5/PMduals.cpp" />
+		<Unit filename="blossom5/PMexpand.cpp" />
+		<Unit filename="blossom5/PMimplementation.h" />
+		<Unit filename="blossom5/PMinit.cpp" />
+		<Unit filename="blossom5/PMinterface.cpp" />
+		<Unit filename="blossom5/PMmain.cpp" />
+		<Unit filename="blossom5/PMrepair.cpp" />
+		<Unit filename="blossom5/PMshrink.cpp" />
+		<Unit filename="blossom5/PQ.h" />
+		<Unit filename="blossom5/PerfectMatching.h" />
+		<Unit filename="blossom5/block.h" />
+		<Unit filename="blossom5/timer.h" />
+		<Unit filename="christofides.cpp" />
+		<Unit filename="christofides.h" />
+		<Unit filename="hierholzer.cpp" />
+		<Unit filename="hierholzer.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="prim.cpp" />
+		<Unit filename="prim.h" />
+		<Unit filename="tspparse.cpp" />
+		<Unit filename="tspparse.h" />
+		<Unit filename="util.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

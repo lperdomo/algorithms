@@ -1,0 +1,473 @@
+# depslib dependency file v1.0
+1499225862 source:/media/leo/7CA5D4323C92D667/workspace/christofides/christofides.cpp
+	"christofides.h"
+
+1499213433 /media/leo/7CA5D4323C92D667/workspace/christofides/christofides.h
+	"util.h"
+	"prim.h"
+	"hierholzer.h"
+	"tspparse.h"
+	"blossom5/PerfectMatching.h"
+	"blossom5/GEOM/GeomPerfectMatching.h"
+	<iostream>
+
+1499058165 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PerfectMatching.h
+	<assert.h>
+	<limits.h>
+	"block.h"
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/block.h
+	"block.h"
+	<stdlib.h>
+
+1498935754 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMinit.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+	"../triangle/triangle.c"
+
+1499057986 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GeomPerfectMatching.h
+	<assert.h>
+	<math.h>
+	"../PerfectMatching.h"
+
+1498947307 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMinterface.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367731130 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMimplementation.h
+	"PerfectMatching.h"
+	"timer.h"
+	"PQ.h"
+	"LCA.h"
+
+1367730067 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/timer.h
+	<windows.h>
+	<time.h>
+	<sys/resource.h>
+
+1367731105 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PQ.h
+	<string.h>
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/LCA.h
+	<assert.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMrepair.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1498945278 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMinit.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMshrink.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMexpand.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367729572 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/MinCost/MinCost.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"MinCost.h"
+	"instances.inc"
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/MinCost/MinCost.h
+	<string.h>
+	<assert.h>
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/MinCost/instances.inc
+	"MinCost.h"
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMduals.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+	"MinCost/MinCost.h"
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMmain.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMkdtree.h
+	"GeomPerfectMatching.h"
+
+1499225986 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/triangle/triangle.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<sys/time.h>
+	<float.h>
+	<fpu_control.h>
+	"triangle.h"
+
+1122575621 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/triangle/triangle.h
+
+1367706981 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMinterface.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+
+1498935507 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMkdtree.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GPMkdtree.h"
+	"../timer.h"
+
+1498935491 /media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMmain.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+	"../timer.h"
+
+1499137749 /media/leo/7CA5D4323C92D667/workspace/christofides/hierholzer.h
+	"util.h"
+
+1499030946 /media/leo/7CA5D4323C92D667/workspace/christofides/graph.h
+	<cmath>
+	<boost/array.hpp>
+	<boost/heap/fibonacci_heap.hpp>
+	<boost/graph/adjacency_matrix.hpp>
+	<boost/graph/adjacency_list.hpp>
+	<boost/graph/connected_components.hpp>
+	<boost/graph/prim_minimum_spanning_tree.hpp>
+	<boost/graph/max_cardinality_matching.hpp>
+	<boost/graph/depth_first_search.hpp>
+	<boost/graph/undirected_dfs.hpp>
+
+1499050928 /media/leo/7CA5D4323C92D667/workspace/christofides/tspparse.h
+	<fstream>
+	<string>
+	<iostream>
+	"util.h"
+
+1499137749 source:/media/leo/7CA5D4323C92D667/workspace/christofides/hierholzer.cpp
+	"hierholzer.h"
+	<iostream>
+
+1499392188 source:/media/leo/7CA5D4323C92D667/workspace/christofides/main.cpp
+	<chrono>
+	"christofides.h"
+
+1499050533 source:/media/leo/7CA5D4323C92D667/workspace/christofides/tspparse.cpp
+	"tspparse.h"
+
+1367729572 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/MinCost/MinCost.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"MinCost.h"
+	"instances.inc"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMduals.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+	"MinCost/MinCost.h"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMexpand.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMinit.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1499227322 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMinterface.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMmain.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMrepair.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/PMshrink.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1499224944 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMinit.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+	"../triangle/triangle.c"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMinterface.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+
+1367706981 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMkdtree.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GPMkdtree.h"
+	"../timer.h"
+
+1499227098 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/GEOM/GPMmain.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+	"../timer.h"
+	<iostream>
+
+1122588692 source:/media/leo/7CA5D4323C92D667/workspace/christofides/blossom5/triangle/triangle.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<sys/time.h>
+	<float.h>
+	<fpu_control.h>
+	"triangle.h"
+
+1499045456 /media/leo/7CA5D4323C92D667/workspace/christofides/prim.h
+	"util.h"
+
+1499050588 source:/media/leo/7CA5D4323C92D667/workspace/christofides/prim.cpp
+	"prim.h"
+
+1499137750 /media/leo/7CA5D4323C92D667/workspace/christofides/util.h
+	<cmath>
+	<boost/array.hpp>
+	<boost/heap/fibonacci_heap.hpp>
+	<boost/graph/adjacency_matrix.hpp>
+	<boost/graph/adjacency_list.hpp>
+	<boost/graph/connected_components.hpp>
+	<boost/graph/depth_first_search.hpp>
+	<boost/graph/undirected_dfs.hpp>
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/GEOM/GPMinit.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+	"../triangle/triangle.c"
+
+1499086959 /home/phi/workspace/christofides/blossom5/GEOM/GeomPerfectMatching.h
+	<assert.h>
+	<math.h>
+	"../PerfectMatching.h"
+
+1498655050 /home/phi/workspace/christofides/blossom5/PerfectMatching.h
+	<assert.h>
+	<limits.h>
+	"block.h"
+
+1498655050 /home/phi/workspace/christofides/blossom5/block.h
+	"block.h"
+	<stdlib.h>
+
+1498655050 /home/phi/workspace/christofides/blossom5/GEOM/GPMkdtree.h
+	"GeomPerfectMatching.h"
+
+1499260306 /home/phi/workspace/christofides/blossom5/triangle/triangle.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<sys/time.h>
+	<float.h>
+	<fpu_control.h>
+	"triangle.h"
+
+1498655050 /home/phi/workspace/christofides/blossom5/triangle/triangle.h
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/GEOM/GPMinterface.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/GEOM/GPMkdtree.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GPMkdtree.h"
+	"../timer.h"
+
+1498655050 /home/phi/workspace/christofides/blossom5/timer.h
+	<windows.h>
+	<time.h>
+	<sys/resource.h>
+
+1499260306 source:/home/phi/workspace/christofides/blossom5/GEOM/GPMmain.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"GeomPerfectMatching.h"
+	"GPMkdtree.h"
+	"../timer.h"
+	<iostream>
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/MinCost/MinCost.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"MinCost.h"
+	"instances.inc"
+
+1498655050 /home/phi/workspace/christofides/blossom5/MinCost/MinCost.h
+	<string.h>
+	<assert.h>
+
+1498655050 /home/phi/workspace/christofides/blossom5/MinCost/instances.inc
+	"MinCost.h"
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/PMduals.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+	"MinCost/MinCost.h"
+
+1498655050 /home/phi/workspace/christofides/blossom5/PMimplementation.h
+	"PerfectMatching.h"
+	"timer.h"
+	"PQ.h"
+	"LCA.h"
+
+1498655050 /home/phi/workspace/christofides/blossom5/PQ.h
+	<string.h>
+
+1498655050 /home/phi/workspace/christofides/blossom5/LCA.h
+	<assert.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/PMexpand.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/PMinit.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1499260306 source:/home/phi/workspace/christofides/blossom5/PMinterface.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/PMmain.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/PMrepair.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1498655050 source:/home/phi/workspace/christofides/blossom5/PMshrink.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PMimplementation.h"
+
+1499109709 source:/home/phi/workspace/christofides/christofides.cpp
+	"christofides.h"
+
+1499109740 /home/phi/workspace/christofides/christofides.h
+	"util.h"
+	"prim.h"
+	"hierholzer.h"
+	"tspparse.h"
+	"blossom5/PerfectMatching.h"
+	"blossom5/GEOM/GeomPerfectMatching.h"
+	<iostream>
+
+1499096919 /home/phi/workspace/christofides/util.h
+	<cmath>
+	<boost/array.hpp>
+	<boost/heap/fibonacci_heap.hpp>
+	<boost/graph/adjacency_matrix.hpp>
+	<boost/graph/adjacency_list.hpp>
+	<boost/graph/connected_components.hpp>
+	<boost/graph/depth_first_search.hpp>
+	<boost/graph/undirected_dfs.hpp>
+
+1499086959 /home/phi/workspace/christofides/prim.h
+	"util.h"
+
+1499109596 /home/phi/workspace/christofides/hierholzer.h
+	"util.h"
+
+1499086959 /home/phi/workspace/christofides/tspparse.h
+	<fstream>
+	<string>
+	<iostream>
+	"util.h"
+
+1499109790 source:/home/phi/workspace/christofides/hierholzer.cpp
+	"hierholzer.h"
+	<iostream>
+
+1499108189 source:/home/phi/workspace/christofides/main.cpp
+	<chrono>
+	"christofides.h"
+
+1499086959 source:/home/phi/workspace/christofides/prim.cpp
+	"prim.h"
+
+1499086959 source:/home/phi/workspace/christofides/tspparse.cpp
+	"tspparse.h"
+
