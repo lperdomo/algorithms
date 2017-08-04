@@ -1,0 +1,22 @@
+c Line Graph - Bad case for Dinics
+c 10 vertices
+p max 10 17
+n 1 s
+n 10 t
+a 1 10 1
+a 1 2 10
+a 2 10 1
+a 2 3 10
+a 3 10 1
+a 3 4 10
+a 4 10 1
+a 4 5 10
+a 5 10 1
+a 5 6 10
+a 6 10 1
+a 6 7 10
+a 7 10 1
+a 7 8 10
+a 8 10 1
+a 8 9 10
+a 9 10 10

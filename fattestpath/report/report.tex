@@ -1,0 +1,512 @@
+\documentclass{iiufrgs}
+\usepackage[latin1]{inputenc}   % pacote para acentuação
+\usepackage{cite}
+\usepackage{graphicx}           % pacote para importar figuras
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{times}              % pacote para usar fonte Adobe Times
+\usepackage{framed}             % para exemplos e TODOs
+\usepackage{xcolor}             % cores
+\usepackage{hyperref}           % referências
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{multirow}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+
+\definecolor{color1}{HTML}{E60046}
+%\definecolor{color21}{HTML}{d95e02} 
+%\definecolor{color31}{HTML}{7570b3}
+%\definecolor{color41}{HTML}{e69f00}
+%\definecolor{color42}{HTML}{009e73}
+\definecolor{color3}{HTML}{009E73}
+\definecolor{color4}{HTML}{D95E02}
+\definecolor{color5}{HTML}{56B4E9}
+
+\pgfplotstableread{
+	upperlimit totalvertices totaledges mincountiter countiter maxcountiter
+	3000 28 70 16 19.35000000000000142109 24
+	3000 39 102 20 24.44999999999999928946 37
+	3000 52 140 24 29.44999999999999928946 37
+	3000 67 184 28 34.00000000000000000000 41
+	3000 84 234 33 37.95000000000000284217 44
+	3000 103 290 37 44.75000000000000000000 59
+	3000 124 352 42 50.20000000000000284217 61
+	3000 147 420 42 55.14999999999999857891 66
+	3000 172 494 53 62.29999999999999715783 77
+	3000 199 574 52 64.45000000000000284217 78
+	3000 228 660 57 71.54999999999999715783 92
+	3000 259 752 65 78.95000000000000284217 97
+	3000 292 850 63 83.09999999999999431566 103
+	3000 327 954 75 92.50000000000000000000 130
+	3000 364 1064 76 93.09999999999999431566 118
+	3000 403 1180 85 98.45000000000000284217 111
+	3000 444 1302 84 101.15000000000000568434 117
+	3000 487 1430 87 111.29999999999999715783 146
+	3000 532 1564 95 121.04999999999999715783 149
+	3000 579 1704 104 119.45000000000000284217 152
+	3000 628 1850 104 124.09999999999999431566 153
+	3000 679 2002 101 135.90000000000000568434 165
+	3000 732 2160 113 137.84999999999999431566 163
+	3000 787 2324 120 144.59999999999999431566 185
+	3000 844 2494 123 149.75000000000000000000 187
+	3000 903 2670 129 159.30000000000001136868 192
+	3000 964 2852 140 166.34999999999999431566 204
+	3000 1027 3040 133 171.80000000000001136868 224
+	3000 1092 3234 138 170.59999999999999431566 196
+	3000 1159 3434 151 181.34999999999999431566 228
+	3000 1228 3640 158 187.34999999999999431566 225
+	3000 1299 3852 165 195.59999999999999431566 242
+	3000 1372 4070 163 195.44999999999998863132 251
+	3000 1447 4294 176 205.00000000000000000000 244
+	3000 1524 4524 184 217.34999999999999431566 261
+	3000 1603 4760 183 217.59999999999999431566 264
+	3000 1684 5002 189 222.75000000000000000000 287
+	3000 1767 5250 190 228.25000000000000000000 292
+	3000 1852 5504 189 234.59999999999999431566 299
+	3000 1939 5764 208 238.40000000000000568434 271
+	3000 2028 6030 216 240.94999999999998863132 283
+	3000 2119 6302 210 257.44999999999998863132 307
+	3000 2212 6580 210 257.64999999999997726263 301
+	3000 2307 6864 215 257.75000000000000000000 300
+	3000 2404 7154 210 266.75000000000000000000 321
+	3000 2503 7450 234 276.94999999999998863132 306 
+}{\meshiter}
+
+\pgfplotstableread{
+	upperlimit totalvertices totaledges mincountiter countiter maxcountiter
+	3000 39 102 15 20.55000000000000071054 27
+	3000 52 140 19 25.05000000000000071054 30
+	3000 67 184 21 28.64999999999999857891 37
+	3000 84 234 27 32.70000000000000284217 47
+	3000 103 290 29 36.20000000000000284217 46
+	3000 124 352 29 38.29999999999999715783 46
+	3000 147 420 33 43.50000000000000000000 63
+	3000 172 494 37 47.25000000000000000000 64
+	3000 199 574 43 52.35000000000000142109 79
+	3000 228 660 34 51.64999999999999857891 60
+	3000 259 752 48 61.50000000000000000000 76
+	3000 292 850 41 65.50000000000000000000 84
+	3000 327 954 54 66.59999999999999431566 92
+	3000 364 1064 57 70.45000000000000284217 89
+	3000 403 1180 56 72.65000000000000568434 92
+	3000 444 1302 57 76.09999999999999431566 95
+	3000 487 1430 64 76.09999999999999431566 103
+	3000 532 1564 67 89.15000000000000568434 113
+	3000 579 1704 76 93.79999999999999715783 134
+	3000 628 1850 74 89.59999999999999431566 107
+	3000 679 2002 80 102.29999999999999715783 128
+	3000 732 2160 85 106.95000000000000284217 149
+	3000 787 2324 80 99.59999999999999431566 128
+	3000 844 2494 83 114.29999999999999715783 139
+	3000 903 2670 95 117.59999999999999431566 154
+	3000 964 2852 100 121.25000000000000000000 140
+	3000 1027 3040 97 123.00000000000000000000 163
+	3000 1092 3234 94 125.95000000000000284217 151
+	3000 1159 3434 105 126.15000000000000568434 159
+	3000 1228 3640 101 129.69999999999998863132 156
+	3000 1299 3852 107 144.40000000000000568434 171
+	3000 1372 4070 113 144.55000000000001136868 185
+	3000 1447 4294 114 152.90000000000000568434 189
+	3000 1524 4524 134 153.40000000000000568434 192
+	3000 1603 4760 115 166.75000000000000000000 219
+	3000 1684 5002 122 160.09999999999999431566 203
+	3000 1767 5250 128 167.30000000000001136868 212
+	3000 1852 5504 128 168.80000000000001136868 231
+	3000 1939 5764 139 177.50000000000000000000 212
+	3000 2028 6030 139 189.00000000000000000000 242
+	3000 2119 6302 146 189.19999999999998863132 244
+	3000 2212 6580 151 190.90000000000000568434 236
+	3000 2307 6864 156 180.40000000000000568434 214
+	3000 2404 7154 164 204.19999999999998863132 257
+	3000 2503 7450 154 199.65000000000000568434 270	
+}{\randomtwolvliter}
+
+\pgfplotstableread{
+	upperlimit totalvertices totaledges mincountiter countiter maxcountiter	
+	5000 28 68.3 12 19.25000000000000000000 24
+	5000 39 113.85 19 27.44999999999999928946 34
+	5000 52 170.75 23 35.95000000000000284217 49
+	5000 67 236 37 49.35000000000000142109 60
+	5000 84 306.8 37 54.39999999999999857891 70
+	5000 103 392.7 47 63.35000000000000142109 88
+	5000 124 486.95 56 67.59999999999999431566 87
+	5000 147 591.95 54 73.95000000000000284217 100
+	5000 172 707.45 64 83.25000000000000000000 117
+	5000 199 832.7 62 92.45000000000000284217 127
+	5000 228 965.6 71 95.15000000000000568434 126
+	5000 259 1108.55 67 98.34999999999999431566 121
+	5000 292 1262.4 88 109.15000000000000568434 144
+	5000 327 1429.9 94 122.75000000000000000000 168
+	5000 364 1602.35 102 123.45000000000000284217 148
+	5000 403 1786.1 111 134.15000000000000568434 165
+	5000 444 1983.1 114 135.19999999999998863132 159
+	5000 487 2186.35 106 146.40000000000000568434 203
+	5000 532 2404.2 109 140.94999999999998863132 179
+	5000 579 2629.1 125 155.65000000000000568434 219
+	5000 628 2861.6 113 158.59999999999999431566 218
+	5000 679 3105.6 141 169.40000000000000568434 218
+	5000 732 3356.85 134 178.84999999999999431566 227
+	5000 787 3623.4 155 185.55000000000001136868 250
+	5000 844 3897.3 155 186.55000000000001136868 242
+	5000 903 4180.1 165 195.40000000000000568434 250
+	5000 964 4470.5 172 218.25000000000000000000 283
+	5000 1027 4783.3 160 221.15000000000000568434 281
+	5000 1092 5097.65 173 218.19999999999998863132 268
+	5000 1159 5421.15 181 210.75000000000000000000 278
+	5000 1228 5757.15 184 226.09999999999999431566 302
+	5000 1299 6099.65 191 246.50000000000000000000 332
+	5000 1372 6453.1 204 249.09999999999999431566 319
+	5000 1447 6820.35 215 244.65000000000000568434 329
+	5000 1524 7191.65 202 256.44999999999998863132 355
+	5000 1603 7584.9 225 277.10000000000002273737 349
+}{\basiclineiter}
+
+\pgfplotstableread{
+	upperlimit totalvertices totaledges mintime elapsedtime maxtime
+	1000 28 70 14 18.39999999999999857891 25
+	1000 39 102 26 33.95000000000000284217 54
+	1000 52 140 42 54.64999999999999857891 71
+	1000 67 184 66 83.09999999999999431566 101
+	1000 84 234 98 115.20000000000000284217 137
+	1000 103 290 137 168.94999999999998863132 235
+	1000 124 352 181 229.25000000000000000000 287
+	1000 147 420 214 300.69999999999998863132 369
+	1000 172 494 329 401.50000000000000000000 513
+	1000 199 574 361 475.94999999999998863132 595
+	1000 228 660 452 608.70000000000004547474 821
+	1000 259 752 624 775.04999999999995452526 976
+	1000 292 850 662 919.89999999999997726263 1168
+	1000 327 954 919 1154.65000000000009094947 1694
+	1000 364 1064 1008 1278.00000000000000000000 1678
+	1000 403 1180 1274 1495.79999999999995452526 1705
+	1000 444 1302 1329 1688.50000000000000000000 2019
+	1000 487 1430 1520 2052.75000000000000000000 2795
+	1000 532 1564 1833 2484.55000000000018189894 3177
+	1000 579 1704 2205 2634.25000000000000000000 3517
+	1000 628 1850 2377 2967.94999999999981810106 3804
+	1000 679 2002 2539 3551.55000000000018189894 4405
+	1000 732 2160 3073 3864.65000000000009094947 4624
+	1000 787 2324 3466 4365.19999999999981810106 5786
+	1000 844 2494 3910 4875.35000000000036379788 6345
+	1000 903 2670 4425 5568.60000000000036379788 6997
+	1000 964 2852 5016 6221.14999999999963620212 7806
+	1000 1027 3040 5043 6875.60000000000036379788 9240
+	1000 1092 3234 5656 7252.35000000000036379788 8511
+	1000 1159 3434 6534 8221.45000000000072759576 10722
+	1000 1228 3640 7354 9030.45000000000072759576 11141
+	1000 1299 3852 8020 10036.10000000000036379788 12573
+	1000 1372 4070 8627 10451.70000000000072759576 13897
+	1000 1447 4294 9663 11635.50000000000000000000 14427
+	1000 1524 4524 10686 13080.85000000000036379788 15861
+	1000 1603 4760 11495 13750.20000000000072759576 17074
+	1000 1684 5002 12144 14778.95000000000072759576 19630
+	1000 1767 5250 12543 15876.10000000000036379788 20963
+	1000 1852 5504 13289 17146.84999999999854480848 22787
+	1000 1939 5764 15392 18200.15000000000145519152 21030
+	1000 2028 6030 16726 19208.70000000000072759576 23426
+	1000 2119 6302 17723 21864.40000000000145519152 26210
+	1000 2212 6580 17962 22759.84999999999854480848 27317
+	1000 2307 6864 18977 23750.75000000000000000000 28308
+	1000 2404 7154 19136 25592.95000000000072759576 31790
+	1000 2503 7450 22601 27691.15000000000145519152 30943
+}{\meshtime}
+
+\pgfplotstableread{
+	upperlimit totalvertices totaledges mintime elapsedtime maxtime
+	1000 39 102 22 30.35000000000000142109 40
+	1000 52 140 32 52.60000000000000142109 80
+	1000 67 184 53 75.09999999999999431566 110
+	1000 84 234 78 106.90000000000000568434 171
+	1000 103 290 118 146.80000000000001136868 193
+	1000 124 352 124 177.40000000000000568434 230
+	1000 147 420 162 240.34999999999999431566 358
+	1000 172 494 224 302.55000000000001136868 419
+	1000 199 574 309 383.89999999999997726263 600
+	1000 228 660 270 429.05000000000001136868 519
+	1000 259 752 442 586.29999999999995452526 754
+	1000 292 850 414 703.60000000000002273737 954
+	1000 327 954 616 790.54999999999995452526 1164
+	1000 364 1064 715 932.45000000000004547474 1220
+	1000 403 1180 766 1056.50000000000000000000 1391
+	1000 444 1302 838 1207.45000000000004547474 1570
+	1000 487 1430 1082 1323.25000000000000000000 1871
+	1000 532 1564 1269 1737.20000000000004547474 2250
+	1000 579 1704 1556 1974.54999999999995452526 3024
+	1000 628 1850 1628 2021.84999999999990905053 2503
+	1000 679 2002 2003 2546.80000000000018189894 3331
+	1000 732 2160 2152 2854.80000000000018189894 4106
+	1000 787 2324 2106 2801.94999999999981810106 3763
+	1000 844 2494 2402 3500.19999999999981810106 4399
+	1000 903 2670 3021 3863.80000000000018189894 5209
+	1000 964 2852 3366 4243.19999999999981810106 5039
+	1000 1027 3040 3477 4607.55000000000018189894 6233
+	1000 1092 3234 3586 5056.94999999999981810106 6294
+	1000 1159 3434 4274 5352.25000000000000000000 6932
+	1000 1228 3640 4283 5801.14999999999963620212 7175
+	1000 1299 3852 4786 6940.75000000000000000000 8560
+	1000 1372 4070 5405 7282.60000000000036379788 9716
+	1000 1447 4294 5696 8175.44999999999981810106 10320
+	1000 1524 4524 7243 8655.75000000000000000000 11311
+	1000 1603 4760 6432 9973.95000000000072759576 13784
+	1000 1684 5002 7181 9922.79999999999927240424 13198
+	1000 1767 5250 8074 10903.39999999999963620212 14162
+	1000 1852 5504 8583 11532.45000000000072759576 16475
+	1000 1939 5764 9850 12737.00000000000000000000 15561
+	1000 2028 6030 9813 14334.95000000000072759576 19069
+	1000 2119 6302 10955 15084.25000000000000000000 19864
+	1000 2212 6580 11904 15929.20000000000072759576 20528
+	1000 2307 6864 13109 15438.70000000000072759576 18708
+	1000 2404 7154 14290 18548.25000000000000000000 24238
+	1000 2503 7450 13693 18789.45000000000072759576 27596
+}{\randomtwolvltime}
+
+\pgfplotstableread{
+	upperlimit totalvertices totaledges mintime elapsedtime maxtime
+	1000 28 68.3 9 15.34999999999999964473 22
+	1000 39 113.85 21 35.25000000000000000000 45
+	1000 52 170.75 41 66.59999999999999431566 96		
+	1000 67 236 92 115.70000000000000284217 161
+	1000 84 306.8 115 178.30000000000001136868 237
+	1000 103 392.7 182 259.75000000000000000000 380
+	1000 124 486.95 286 345.75000000000000000000 472
+	1000 147 591.95 314 451.30000000000001136868 632
+	1000 172 707.45 467 605.39999999999997726263 924
+	1000 199 832.7 511 788.45000000000004547474 1132
+	1000 228 965.6 666 941.10000000000002273737 1327
+	1000 259 1108.55 724 1117.70000000000004547474 1443
+	1000 292 1262.4 1142 1427.54999999999995452526 1890
+	1000 327 1429.9 1352 1783.45000000000004547474 2525
+	1000 364 1602.35 1640 1986.45000000000004547474 2406
+	1000 403 1786.1 1884 2432.40000000000009094947 3093
+	1000 444 1983.1 2113 2691.05000000000018189894 3299
+	1000 487 2186.35 2301 3257.34999999999990905053 4768
+	1000 532 2404.2 2631 3471.30000000000018189894 4329
+	1000 579 2629.1 3302 4160.39999999999963620212 6165
+	1000 628 2861.6 3156 4557.94999999999981810106 6644
+	1000 679 3105.6 4398 5348.05000000000018189894 6890
+	1000 732 3356.85 4464 6101.19999999999981810106 8083
+	1000 787 3623.4 5610 6740.69999999999981810106 9428
+	1000 844 3897.3 6019 7363.05000000000018189894 9832
+	1000 903 4180.1 7017 8236.85000000000036379788 11067
+	1000 964 4470.5 8033 10122.25000000000000000000 13325
+	1000 1027 4783.3 7799 10806.45000000000072759576 14094
+	1000 1092 5097.65 9018 11398.04999999999927240424 14726
+	1000 1159 5421.15 10018 11626.10000000000036379788 16219
+	1000 1228 5757.15 10872 13342.64999999999963620212 18584
+	1000 1299 6099.65 11838 15487.04999999999927240424 21648
+	1000 1372 6453.1 13623 16504.95000000000072759576 21478
+	1000 1447 6820.35 14951 17014.50000000000000000000 23483
+	1000 1524 7191.65 14864 18919.04999999999927240424 27884
+	1000 1603 7584.9 17785 22016.04999999999927240424 28793		
+}{\basiclinetime}
+
+\title{Fluxo $s-t$ máximo \linebreak Ford-Fulkerson com estratégia \textit{Fattest Path}}
+\author{}{Leonardo Perdomo}
+
+\begin{document}
+	\maketitle
+	
+	\setcounter{chapter}{1}
+	
+	\section{Tarefa}
+	O objetivo deste trabalho foi a implementação prática em laboratório e a análise experimental da complexidade do algoritmo de Ford-Fulkerson \cite{fordfulkerson1956flow} utilizando para aprimoramento do mesmo a estratégia de \textit{fattest path}.
+	
+	\section{Solução}
+	Para implementar a solução do problema proposto, foi utilizado o algoritmo de Dijkstra com alterações para busca do fluxo $s-t$ mais curto com maior capacidade. Para permitir um desenvolvimento mais organizado e compreensivo, o protótipo com fila de prioridade de \textit{heaps} n-ários do primeiro trabalho foi reimplementado orientado à objetos com fila em \textit{max heap} binário, ordenando sempre pela maior capacidade (de \textit{deletemin} para \textit{deletemax}), enquanto as alterações no algoritmo de Dijkstra consistiram na mudança de soma da distância para seleção da maior capacidade adjacente.
+	
+	O algoritmo Ford-Fulkerson desenvolvido obtém sucessivamente o fluxo $s-t$ com Dijkstra, verifica o gargalo do mesmo, e monta os arcos residuais no grafo. O processo deve terminar quando Dijkstra não encontrar mais fluxo $s-t$ viável em no máximo $O(mlog_mU)$ passos, não havendo fluxo e não terminando caso contrário, sendo $U$ o limite superior da capacidade dos arcos. A complexidade esperada para o algoritmo é de $O((mlogn)mlog_mC)$, para um limitante superior $C$ do fluxo máximo, considerando o uso de Dijkstra com \textit{heap} binário. 	
+		
+	\section{Ambiente de teste}
+	O dispositivo utilizado para realização dos testes foi o \textit{notebook} pessoal do autor deste trabalho, um ASUS X451CAP com Intel i3 3217U de 1.8GHz, 4GB de RAM DDR3 de 798MHz com Ubuntu 16.04 64bit LTS.
+	
+	
+	\section{Resultados}
+	Os experimentos realizados consistiram na utilização de grafos gerados aleatoriamente, dos tipos grade \textit{Mesh} e \textit{Random 2-level}, e  linha \textit{Basic Line}, pelo script \textit{new-washington.c} disponibilizado pelo professor em aula. Para as grades, os parâmetros de linha $r$ e coluna $c$ da geração ($n=rc+2$ e $m=3r(c-1)$) foram aumentando incrementalmente de 5 à 50 a cada lote, enquanto para o tipo linha, o grau $D$ foi fixado em 5, e os parâmetros de vértices $n$ e arestas $m$ ($n=nm+2$ e $m=nmD+2m$) também aumentaram incrementalmente de 5 à 50. Para cada configuração, foram gerados os grafos e resolvidos 20 vezes em repetição pelo algoritmo implementado.
+	
+	O número de iterações por execução do algoritmo Ford-Fulkerson de acordo com o aumento de arestas foi coletado para verificação do cumprimento da condição esperada $O(mlog_mU)$ máxima para passos. As médias dos números de iterações por tipo de grafo e suas respectivas variações são apresentadas nas figuras \ref{fig:iterations}.a, \ref{fig:iterations}.b e \ref{fig:iterations}.c, com as amplitudes indicadas pelos traços verticais. Estes resultados obtidos respeitam o limite máximo esperado, como pode ser observado comparativamente na figura \ref{fig:iterations}.d, com as iterações coletadas dos três tipos de grafos na região inferior do gráfico estando significativamente abaixo em relação ao limite teórico de iterações, em destaque, devido à grandeza teórica do mesmo discutida em aula. \newline\newline
+	
+	
+	
+	\begin{figure}[h!]
+		\centering
+		\subfigure[Grafos do tipo Mesh] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			scaled y ticks = false,
+			scaled x ticks = false,
+			width=\linewidth/2.1,
+			enlarge y limits,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Arestas,
+			ylabel=Iterações
+			]	
+			\addplot+[very thick, forget plot, only marks, mark options={draw=color5!80!black}] 
+			plot[very thick, error bars/.cd, error bar style={color5!80!black}, y dir=plus, y explicit]
+			table[x=totaledges,y=countiter,y error expr=\thisrow{maxcountiter}-\thisrow{countiter}] {\meshiter};
+			\addplot+[very thick, only marks, mark options={line width=0.5pt, draw=color5!80!black, fill=color5, scale=1.0pt}] 
+			plot[very thick, error bars/.cd, error bar style={color5!80!black}, y dir=minus, y explicit]
+			table[x=totaledges,y=countiter,y error expr=\thisrow{countiter}-\thisrow{mincountiter}] {\meshiter};					
+			\end{axis}
+			\end{tikzpicture}	
+		}
+		\subfigure[Grafos do tipo Random 2-level] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			scaled y ticks = false,
+			scaled x ticks = false,
+			width=\linewidth/2.1,
+			enlarge y limits,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Arestas,
+			ylabel=Iterações	
+			]	
+			\addplot+[very thick, forget plot, only marks, mark options={draw=color4!80!black}] 
+			plot[very thick, error bars/.cd, error bar style={color4!80!black}, y dir=plus, y explicit]
+			table[x=totaledges,y=countiter,y error expr=\thisrow{maxcountiter}-\thisrow{countiter}] {\randomtwolvliter};
+			\addplot+[very thick, only marks, mark options={line width=0.5pt, draw=color4!80!black, fill=color4, scale=1.0pt}] 
+			plot[very thick, error bars/.cd, error bar style={color4!80!black}, y dir=minus, y explicit]
+			table[x=totaledges,y=countiter,y error expr=\thisrow{countiter}-\thisrow{mincountiter}] {\randomtwolvliter};						
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos do tipo Basic Line com grau 5] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			scaled y ticks = false,
+			scaled x ticks = false,
+			width=\linewidth/2.1,
+			enlarge y limits,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Arestas,
+			ylabel=Iterações		
+			]	
+			\addplot+[very thick, forget plot, only marks, mark options={draw=color3!80!black}] 
+			plot[very thick, error bars/.cd, error bar style={color3!80!black}, y dir=plus, y explicit]
+			table[x=totaledges,y=countiter,y error expr=\thisrow{maxcountiter}-\thisrow{countiter}] {\basiclineiter};
+			\addplot+[very thick, only marks, mark options={line width=0.5pt, draw=color3!80!black, fill=color3, scale=1.0pt}] 
+			plot[very thick, error bars/.cd, error bar style={color3!80!black}, y dir=minus, y explicit]
+			table[x=totaledges,y=countiter,y error expr=\thisrow{countiter}-\thisrow{mincountiter}] {\basiclineiter};					
+			\end{axis}
+			\end{tikzpicture}		
+		}
+		\subfigure[Iterações em relação ao limite esperado] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			scaled y ticks = false,
+			scaled x ticks = false,
+			width=\linewidth/2.1,
+			enlarge y limits,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Arestas,
+			ylabel=Iterações,
+			legend style={at={(0.45, 0.95)},font=\tiny},	
+			]	
+			\addplot+[width=0.5pt, mark=none, draw=color5!90!black] 
+			plot[very thick]
+			table[x=totaledges,y=countiter] {\meshiter};
+			\addplot+[width=0.5pt, mark=none, draw=color4!90!black] 
+			plot[very thick]
+			table[x=totaledges,y=countiter] {\randomtwolvliter};
+			\addplot+[width=0.5pt, mark=none, draw=color3!90!black] 
+			plot[very thick]
+			table[x=totaledges,y=countiter] {\basiclineiter};
+			\addplot+[width=0.5pt, mark=none, draw=color1!90!black] 
+			plot[very thick]
+			table[x=totaledges,y expr=\thisrow{totaledges}*(ln(\thisrow{upperlimit})/ln(\thisrow{totaledges}))] {\meshiter};		
+			\legend{Mesh, Random2Lvl, BasicLine5, $mlog_mU$}			
+			\end{axis}
+			\end{tikzpicture}
+		}		
+		\caption{Crescimento no número de iterações conforme número de arestas dos grafos.}
+		\label{fig:iterations}
+	\end{figure}					
+		
+	Para a análise da relação entre tempo observado $T_o$ e teórico $T$, também foram coletados os tempos de execução do algoritmo implementado durante os experimentos. O tempo médio de execução para cada tipo de grafo foi dividido pela complexidade esperada $O((mlogn)mlog_mC)$, podendo ser observado nas figuras \ref{fig:time}.a, para \textit{Mesh}, \ref{fig:time}.b, para \textit{Random 2-level}, e \ref{fig:time}.c, para \textit{Basic Line} com grau 5, que são desenhadas curvas aproximando-se ao eixo com o aumento no número de arestas, conforme comportamento descrito em aula, demonstrando o respeito à complexidade esperada. \newline\newline\newline\newline\newline\newline\newline\newline
+	
+	\begin{figure}[h!]
+		\centering
+		\subfigure[Grafos do tipo Mesh] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			scaled y ticks = false,
+			scaled x ticks = false,
+			width=\linewidth/2.25,
+			enlarge y limits,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Arestas,
+			ylabel=Relação $T_o/T$
+			]	
+			\addplot+[very thick, color=color5, mark options={line width=0.5pt, draw=color5!80!black, fill=color5, scale=1.0pt}] 
+			plot[very thick]
+			table[x=totaledges, y 
+			expr=(\thisrow{elapsedtime})/(((\thisrow{totaledges})*(ln(\thisrow{totalvertices})))*((\thisrow{totaledges})*(ln(\thisrow{upperlimit})/ln(\thisrow{totaledges}))))] {\meshtime};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos do tipo Random 2-level] {
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			scaled y ticks = false,
+			scaled x ticks = false,
+			width=\linewidth/2.25,
+			enlarge y limits,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Arestas,
+			ylabel=Relação $T_o/T$		
+			]	
+			\addplot+[very thick, color=color4, mark options={line width=0.5pt, draw=color4!80!black, fill=color4, scale=1.0pt}] 
+			plot[very thick]
+			table[x=totaledges, y expr=(\thisrow{elapsedtime})/(((\thisrow{totaledges})*(ln(\thisrow{totalvertices})))*((\thisrow{totaledges})*(ln(\thisrow{upperlimit})/ln(\thisrow{totaledges}))))] {\randomtwolvltime};	
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\subfigure[Grafos do tipo Basic Line com grau 5] {		
+			\begin{tikzpicture}[every node/.style={outer sep=0}, every tick label/.append style={font=\tiny}]
+			\begin{axis}[
+			xmin = 0,
+			scaled y ticks = false,
+			scaled x ticks = false,
+			width=\linewidth/2.25,
+			enlarge y limits,
+			grid=major,
+			grid style={dashed,gray!30},
+			yticklabel style={align=right,inner sep=0,xshift=-0.3em},
+			xlabel=Arestas,
+			ylabel=Relação $T_o/T$		
+			]	
+			\addplot+[very thick, color=color3, mark options={line width=0.5pt, draw=color3!80!black, fill=color3, scale=1.0pt}] 
+			plot[very thick]
+			table[x=totaledges, y expr=(\thisrow{elapsedtime})/(((\thisrow{totaledges})*(ln(\thisrow{totalvertices})))*((\thisrow{totaledges})*(ln(\thisrow{upperlimit})/ln(\thisrow{totaledges}))))] {\basiclinetime};			
+			\end{axis}
+			\end{tikzpicture}
+		}			
+		\caption{Relação entre tempo observado ao tempo esperado conforme número de arestas.}
+		\label{fig:time}
+	\end{figure}		
+	
+	\section{Conclusão}
+	Através da implementação prática e experimentação conduzidas neste trabalho, foi possível observar que a estratégia \textit{fattest path} para o algoritmo Ford-Fulkerson respeita a complexidade teórica e o número limite de passos. Para os três tipos de grafos analisados (\textit{Mesh}, \textit{Random 2-level} e \textit{Basic Line} com grau 5) o número de iterações esteve significativamente abaixo do limite máximo previsto, o que já era esperado devido à grandeza do mesmo, enquanto o tempo de execução observado respeita o tempo teórico de $O((mlogn)mlog_mC)$.
+	
+	
+	\bibliographystyle{IEEEtran}
+	\bibliography{r}
+	
+\end{document}
