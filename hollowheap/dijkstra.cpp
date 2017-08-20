@@ -1,44 +1,68 @@
-#include <math.h>
 #include "dijkstra.h"
 
-#include <iostream>
-using namespace std;
-
-void dijkstra(Digraph &graph, unsigned src, vector<unsigned> &dist)
+Dijkstra::Dijkstra()
 {
-	Arc aux;
-	HHEAP_item currentv, item;
-	HHEAP_node node;
-	hheap heap;
-	unsigned adj, i;
-
-	dist.clear();
-	for (i = 0; i <= graph->vertexes; i++) {
-		dist.push_back(numeric_limits<unsigned>::max());
-	}
-	dist[src] = 0;
-	HHEAP_makeHeap(heap);
-	HHEAP_resizeAux(heap, graph->vertexes);
-	HHEAP_insert(heap, 0, HHEAP_newItem(src));
-
-	while (heap->size > 0) {
-		currentv = HHEAP_deleteMin(heap);
-		for (aux = graph->adj[currentv->value]; aux != NULL; aux = aux->next) {
-			adj = aux->component;
-			if (dist[adj] == numeric_limits<unsigned>::max()) {
-				dist[adj] = dist[currentv->value] + aux->weight;
-				HHEAP_insert(heap, dist[adj], HHEAP_newItem(adj));
-			} else if ((dist[currentv->value] + aux->weight) < dist[adj]) {
-				dist[adj] = dist[currentv->value] + aux->weight;
-				item = HHEAP_newItem(adj);
-				node = HHEAP_newNode(dist[adj], item);
-				HHEAP_decreaseKey(heap, node, dist[adj]);
-			}
-		}
-	}
-
-	delete heap;
 }
 
+Dijkstra::Dijkstra(Graph graph)
+{
+    this->graph = graph;
+    this->vertices = boost::num_vertices(graph);
+}
 
+Dijkstra::~Dijkstra()
+{
+}
 
+void Dijkstra::readDimacsFile(istream& in) {
+	string line="", dummy;
+	while (line.substr(0,4) != "p sp")
+		getline(in,line);
+	stringstream linestr;
+	linestr.str(line);
+	unsigned i = 0, n, m;
+	linestr >> dummy >> dummy >> n >> m;
+	while (i < m) {
+		getline(in,line);
+		if (line.substr(0,2) == "a ") {
+			stringstream arc(line);
+			unsigned u,v,w;
+			char ac;
+			arc >> ac >> u >> v >> w;
+			Edge e = add_edge(u, v, graph).first;
+		    graph[e].weight = w;
+			i++;
+		}
+	}
+	this->vertices = boost::num_vertices(graph);
+}
+
+void Dijkstra::run(long source)
+{
+	HHItem *current, item;
+    pair<boost::graph_traits<Graph>::adjacency_iterator, boost::graph_traits<Graph>::adjacency_iterator> neighbours;
+	distance.clear();
+	HollowHeap q;
+	for (long i = 0; i <= boost::num_vertices(graph); i++) {
+		distance.push_back(numeric_limits<long>::max());
+		q.aux.push_back(NULL);
+	}
+	distance[source] = 0;
+	q.insert(new HHNode(0, new HHItem(source)));
+
+	while (q.size > 0) {
+		current = q.deleteMin();
+		neighbours = boost::adjacent_vertices(boost::vertex(current->value, graph), graph);
+		while (neighbours.first != neighbours.second) {
+			Edge e = boost::edge(current->value, *neighbours.first, graph).first;
+			if (distance[*neighbours.first] == numeric_limits<long>::max()) {
+				distance[*neighbours.first] = distance[current->value] + graph[e].weight;
+				q.insert(new HHNode(distance[*neighbours.first], new HHItem(*neighbours.first)));
+			} else if ((distance[current->value] + graph[e].weight) < distance[*neighbours.first]) {
+				distance[*neighbours.first] = distance[current->value] + graph[e].weight;
+				q.decreaseKey(new HHNode(distance[*neighbours.first], new HHItem(*neighbours.first)), distance[*neighbours.first]);
+			}
+			neighbours.first++;
+		}
+	}
+}

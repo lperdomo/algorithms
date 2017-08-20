@@ -6,7 +6,6 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/adjacency_iterator.hpp>
 
-#include "digraph.h"
 #include "heapn.h"
 
 struct VertexInformation {

@@ -1,12 +1,37 @@
 #ifndef DIJKSTRA_H_
 #define DIJKSTRA_H_
 
-#include <stdlib.h>
 #include <vector>
 #include <limits>
-#include "digraph.h"
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/adjacency_iterator.hpp>
+
 #include "hollowheap.hpp"
 
-void dijkstra(Digraph &graph, unsigned src, vector<unsigned> &dist);
+struct VertexInformation {
+  unsigned component;
+};
+
+struct EdgeInformation {
+  unsigned weight;
+};
+
+typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, VertexInformation, EdgeInformation> Graph;
+typedef boost::graph_traits<Graph>::edge_descriptor Edge;
+
+class Dijkstra
+{
+    public:
+        Dijkstra();
+        Dijkstra(Graph graph);
+        ~Dijkstra();
+        void run(long source);
+        void readDimacsFile(istream &in);
+        vector<long> distance;
+    private:
+        Graph graph;
+        long vertices;
+};
+
 
 #endif
