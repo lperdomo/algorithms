@@ -18,7 +18,7 @@ void read_dimacs(long &source, long &sink, long &highestFlow, long &flowSum, Gra
 		lineType = line.substr(0,2);
 		stringstream lineStream(line);
 		if (lineType == "e ") {
-			long u,v,w;
+			long u,v;
 			char ac;
 			lineStream >> ac >> u >> v;
 			if (u != v) {

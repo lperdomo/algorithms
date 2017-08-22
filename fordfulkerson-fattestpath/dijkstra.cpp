@@ -44,12 +44,7 @@ long Dijkstra::getMin(long value1, long value2)
 
 void Dijkstra::reset()
 {
-	flow.clear();
-	for (long i = 0; i <= this->vertexes; i++) {
-		previous[i] = 0;
-		visited[i] = false;
-		capacities[i] = -1;
-	}
+
 }
 
 void Dijkstra::buildFlow()
@@ -72,17 +67,25 @@ void Dijkstra::buildFlow()
 vector<long> Dijkstra::findFlow(long source, long sink)
 {
 	bool found;
-	this->reset();
 	this->source = source;
 	this->sink = sink;
 	capacities[source] = 0;
 	pair<graph_traits<Graph>::adjacency_iterator, graph_traits<Graph>::adjacency_iterator> neighbours;
-	HeapB *priorityQueue = new HeapB();
-	Node current = priorityQueue->makeNode(source, 0);
-	priorityQueue->insert(current);
-	while (priorityQueue->size() > 0) {
+	HeapN q(2);
+
+	flow.clear();
+	for (long i = 0; i <= this->vertexes; i++) {
+		previous[i] = 0;
+		visited[i] = false;
+		capacities[i] = -1;
+		q.map.push_back(0);
+	}
+
+	Node current = q.makeNode(source, 0);
+	q.insert(current);
+	while (q.size() > 0) {
 		found = false;
-		current = priorityQueue->deleteMax();
+		current = q.deleteMax();
 		visited[current.first] = true;
 		if (current.first == this->sink) {
 			found = true;
@@ -96,11 +99,11 @@ vector<long> Dijkstra::findFlow(long source, long sink)
 				found = true;
 				if (capacities[key] < 0) {
 					capacities[key] = getMin(current.second, graph[e].capacity);
-					priorityQueue->insert(key, capacities[key]);
+					q.insert(q.makeNode(key, capacities[key]));
 					previous[key] = current.first;
 				} else if (getMin(current.second, graph[e].capacity) > capacities[key]) {
 					capacities[key] = getMin(current.second, graph[e].capacity);
-					priorityQueue->update(key, capacities[key]);
+					q.update(q.makeNode(key, capacities[key]));
 					previous[key] = current.first;
 				}
 			}

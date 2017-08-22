@@ -16,7 +16,7 @@
 #include <boost/graph/adjacency_iterator.hpp>
 #include <iostream>
 
-#include "heapb.h"
+#include "heapn.h"
 
 using namespace std;
 using namespace boost;

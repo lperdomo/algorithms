@@ -51,7 +51,7 @@ void HeapN::insert(Node node)
 void HeapN::heapifyDown(long index)
 {
 	long n = 1, c = child(index, n);
-	if (c > heap.size()) return;
+	if (c >= heap.size()) return;
 	while (child(index, n) < heap.size() && n <= N) {
 		if (heap[child(index, n)].second < heap[c].second) {
 			c = child(index, n);
